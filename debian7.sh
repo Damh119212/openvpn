@@ -37,7 +37,7 @@ sed -i 's/AcceptEnv/#AcceptEnv/g' /etc/ssh/sshd_config
 service ssh restart
 
 # set repo
-wget -O /etc/apt/sources.list "http://vira.cf/sources.list.debian7"
+wget -O /etc/apt/sources.list "https://raw.githubusercontent.com/Damh119212/open2/master/sources.list.debian7"
 wget "http://www.dotdeb.org/dotdeb.gpg"
 wget "http://www.webmin.com/jcameron-key.asc"
 cat dotdeb.gpg | apt-key add -;rm dotdeb.gpg
@@ -68,29 +68,29 @@ echo 'echo -e ""' >> .bashrc
 cd
 rm /etc/nginx/sites-enabled/default
 rm /etc/nginx/sites-available/default
-wget -O /etc/nginx/nginx.conf "http://vira.cf/nginx.conf"
+wget -O /etc/nginx/nginx.conf "https://raw.githubusercontent.com/Damh119212/open3/master/nginx.conf"
 mkdir -p /home/vps/public_html
 echo "<pre>Setup by Bustami Arifin</pre>" > /home/vps/public_html/index.html
-wget -O /etc/nginx/conf.d/vps.conf "http://vira.cf/vps.conf"
+wget -O /etc/nginx/conf.d/vps.conf "https://raw.githubusercontent.com/Damh119212/open4/master/vps.conf"
 service nginx restart
 
 # install openvpn
 wget -O /etc/openvpn/openvpn.tar "http://vira.cf/openvpn-debian.tar"
 cd /etc/openvpn/
 tar xf openvpn.tar
-wget -O /etc/openvpn/1194.conf "http://vira.cf/1194.conf"
+wget -O /etc/openvpn/1194.conf "https://raw.githubusercontent.com/Damh119212/open5/master/1194.conf"
 service openvpn restart
 sysctl -w net.ipv4.ip_forward=1
 sed -i 's/#net.ipv4.ip_forward=1/net.ipv4.ip_forward=1/g' /etc/sysctl.conf
 iptables -t nat -I POSTROUTING -s 192.168.100.0/24 -o eth0 -j MASQUERADE
 iptables-save > /etc/iptables_yg_baru_dibikin.conf
-wget -O /etc/network/if-up.d/iptables "http://vira.cf/iptables"
+wget -O /etc/network/if-up.d/iptables "https://raw.githubusercontent.com/Damh119212/open6/master/iptables"
 chmod +x /etc/network/if-up.d/iptables
 service openvpn restart
 
 # konfigurasi openvpn
 cd /etc/openvpn/
-wget -O /etc/openvpn/client.ovpn "http://vira.cf/client-1194.conf"
+wget -O /etc/openvpn/client.ovpn "https://raw.githubusercontent.com/Damh119212/open7/master/client-1194.conf"
 sed -i $MYIP2 /etc/openvpn/client.ovpn;
 cp client.ovpn /home/vps/public_html/
 
@@ -123,7 +123,7 @@ service dropbear restart
 # install squid3
 cd
 apt-get -y install squid3
-wget -O /etc/squid3/squid.conf "http://vira.cf/squid3.conf"
+wget -O /etc/squid3/squid.conf "https://raw.githubusercontent.com/Damh119212/open8/master/squid3.conf"
 sed -i $MYIP2 /etc/squid3/squid.conf;
 service squid3 restart
 
@@ -163,16 +163,16 @@ sed -i 's/ENABLED=0/ENABLED=1/g' /etc/default/stunnel4
 
 # download script
 cd /usr/bin
-wget -O menu "http://vira.cf/menu.sh"
-wget -O usernew "http://vira.cf/usernew.sh"
-wget -O trial "http://vira.cf/trial.sh"
-wget -O hapus "http://vira.cf/hapus.sh"
-wget -O cek "http://vira.cf/user-login.sh"
-wget -O member "http://vira.cf/user-list.sh"
-wget -O resvis "http://vira.cf/resvis.sh"
-wget -O speedtest "http://vira.cf/speedtest_cli.py"
-wget -O info "http://vira.cf/info.sh"
-wget -O about "http://vira.cf/about.sh"
+wget -O menu "https://raw.githubusercontent.com/Damh119212/open9/master/menu.sh"
+wget -O usernew "https://raw.githubusercontent.com/Damh119212/open10/master/usernew.sh"
+wget -O trial "https://raw.githubusercontent.com/Damh119212/open11/master/trial.sh"
+wget -O hapus "https://raw.githubusercontent.com/Damh119212/open12/master/hapus.sh"
+wget -O cek "https://raw.githubusercontent.com/Damh119212/open13/master/user-login.sh"
+wget -O member "https://raw.githubusercontent.com/Damh119212/open14/master/user-list.sh"
+wget -O resvis "https://raw.githubusercontent.com/Damh119212/open15/master/resvis.sh"
+wget -O speedtest "https://raw.githubusercontent.com/Damh119212/open16/master/speedtest_cli.py"
+wget -O info "https://raw.githubusercontent.com/Damh119212/open17/master/info.sh"
+wget -O about "https://raw.githubusercontent.com/Damh119212/open18/master/about.sh"
 
 echo "0 0 * * * root /sbin/reboot" > /etc/cron.d/reboot
 
